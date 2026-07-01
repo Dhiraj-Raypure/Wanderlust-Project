@@ -1,0 +1,129 @@
+<% layout('/layouts/boilerplate') -%>
+<body>
+    <!-- Mobile Button -->
+    <div class="d-lg-none mb-3">
+        <button
+            class="btn btn-outline-dark w-100"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mobileFilters">
+            <i class="fa-solid fa-sliders"></i> Categories
+        </button>
+    </div>
+
+    <!-- Filters -->
+    <div id="mobileFilters" class="collapse d-lg-block">
+        <div id="filters">
+
+            <a href ="/listings/categories/Trending">
+                <div class="filter">
+                    <i class="fa-solid fa-fire"></i>
+                    <p>Trending</p>
+                </div>
+            </a>
+
+            <a href = "/listings/categories/Rooms">
+                <div class="filter">
+                    <i class="fa-solid fa-bed"></i>
+                    <p>Rooms</p>
+                </div>
+            </a>
+
+            <a href = "/listings/categories/"Iconic-cities">
+                <div class="filter">
+                    <i class="fa-solid fa-city"></i>
+                    <p>Iconic cities</p>
+                </div>
+            </a>
+
+            <a href = "/listings/categories/Mountains">
+                <div class="filter">
+                    <i class="fa-solid fa-mountain"></i>
+                    <p>Mountains</p>
+                </div>
+            </a>
+
+            <a href = "/listings/categories/Beaches">
+                <div class="filter">
+                    <i class="fa-solid fa-water"></i>
+                    <p>Beaches</p>
+                </div> 
+            </a>
+
+            <a href = "/listings/categories/Hill-Stations">
+                <div class="filter">
+                    <i class="fa-solid fa-tree"></i>
+                    <p>Hill Stations</p>
+                </div>
+            </a>
+
+            <a href = "/listings/categories/Lake-Front">
+                <div class="filter">
+                    <i class="fa-solid fa-sailboat"></i>
+                    <p>Lakefront</p>
+                </div>
+            </a>
+
+            <a href = "/listings/categories/Camping">
+                <div class="filter">
+                    <i class="fa-solid fa-campground"></i>
+                    <p>Camping</p>
+                </div>
+            </a>
+
+            <a href = "/listings/categories/Farms">
+                <div class="filter">
+                    <i class="fa-solid fa-tractor"></i>
+                    <p>Farms</p>
+                </div>
+            </a>
+
+            <a href = "/listings/categories/Artic">
+                <div class="filter">
+                    <i class="fa-solid fa-snowflake"></i>
+                    <p>Arctic</p>
+                </div>
+            </a>
+
+            <div class="form-check form-switch tax-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                <label class="form-check-label" for="switchCheckDefault">Total after taxes</label>
+            </div>
+
+        </div>
+    </div>
+    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1">
+         <% for(let listing of allListings){ %>
+            <a href ="/listings/<%= listing._id %>">
+                <div class="card listing-card">
+                    <img src="<%= listing.image.url %>" class="card-img-top" loading="lazy" style="height: 20rem;" alt="...">
+                    <div class ="card-img-overlay">WanderLust</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b> <%= listing.title %> </b> <br>
+                            &#8377;  <%= listing.price.toLocaleString("en-IN") %>
+                            <i class="tax-info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+18% GST</i>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        <% } %>
+    </div>    
+</body>
+<script>
+    let taxSwitch = document.getElementById("switchCheckDefault");
+    taxSwitch.addEventListener("click", () => {
+        let taxInfo = document.getElementsByClassName("tax-info");
+        
+        for(info of taxInfo){
+            if(info.style.display != "inline"){
+                info.style.display  = "inline";
+            }else{
+                info.style.display = "none";
+            }
+        }
+    })
+</script>
+
+
+
