@@ -19,7 +19,7 @@ const showTypesOfListing = async (req,res,next) =>{
     let type = req.params.type;
     const listings = await Listing.find({ category: type });
 
-    if(!listings){
+    if(listings.length === 0){
         return next(new AppError("no data found in DB",404))
     }
     res.render("listings/index",{allListings: listings});
